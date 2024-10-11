@@ -45,17 +45,30 @@ resource "aws_batch_compute_environment" "this" {
       dynamic "launch_template" {
         for_each = !contains(["FARGATE", "FARGATE_SPOT"], compute_resources.value.type) && try(compute_resources.value.launch_template, null) != null ? [compute_resources.value.launch_template] : []
         content {
-          launch_template_id   = lookup(launch_template.value, "id", null)
-          launch_template_name = lookup(launch_template.value, "name", null)
+          launch_template_id   = lookup(launch_template.value, "id", lookup(launch_template.value, "launch_template_id", null))
+          launch_template_name = lookup(launch_template.value, "name", lookup(launch_template.value, "launch_template_name", null))
           version              = lookup(launch_template.value, "version", null)
         }
       }
     }
   }
 
+  dynamic "eks_configuration" {
+    for_each = try([each.value.eks_configuration], [])
+
+    content {
+      eks_cluster_arn      = eks_configuration.value.eks_cluster_arn
+      kubernetes_namespace = eks_configuration.value.kubernetes_namespace
+    }
+  }
+
   # Prevent a race condition during environment deletion, otherwise the policy may be destroyed
   # too soon and the compute environment will then get stuck in the `DELETING` state
   depends_on = [aws_iam_role_policy_attachment.service]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   tags = merge(var.tags, lookup(each.value, "tags", {}))
 }
@@ -224,7 +237,7 @@ resource "aws_batch_job_queue" "this" {
   state                 = each.value.state
   priority              = each.value.priority
   scheduling_policy_arn = try(each.value.create_scheduling_policy, true) ? aws_batch_scheduling_policy.this[each.key].arn : try(each.value.scheduling_policy_arn, null)
-  compute_environments  = [for env in aws_batch_compute_environment.this : env.arn]
+  compute_environments  = slice([for env in try(each.value.compute_environments, keys(var.compute_environments)) : aws_batch_compute_environment.this[env].arn], 0, min(length(try(each.value.compute_environments, keys(var.compute_environments))), 3))
 
   tags = merge(var.tags, lookup(each.value, "tags", {}))
 }

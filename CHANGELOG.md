@@ -2,6 +2,59 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0](https://github.com/terraform-aws-modules/terraform-aws-batch/compare/v2.0.3...v2.1.0) (2024-08-19)
+
+
+### Features
+
+* Add support for `eks_configuration` ([#32](https://github.com/terraform-aws-modules/terraform-aws-batch/issues/32)) ([b6aa7e1](https://github.com/terraform-aws-modules/terraform-aws-batch/commit/b6aa7e107d1da94afb6453f787bc4d8898b2063e))
+
+## [2.0.3](https://github.com/terraform-aws-modules/terraform-aws-batch/compare/v2.0.2...v2.0.3) (2024-03-07)
+
+
+### Bug Fixes
+
+* Update CI workflow versions to remove deprecated runtime warnings ([#27](https://github.com/terraform-aws-modules/terraform-aws-batch/issues/27)) ([64b1ba1](https://github.com/terraform-aws-modules/terraform-aws-batch/commit/64b1ba12df6c677b682f665f9a0a3c8c9dd8c750))
+
+### [2.0.2](https://github.com/terraform-aws-modules/terraform-aws-batch/compare/v2.0.1...v2.0.2) (2023-12-11)
+
+
+### Bug Fixes
+
+* Rename launch template parameters ([#25](https://github.com/terraform-aws-modules/terraform-aws-batch/issues/25)) ([3e370d0](https://github.com/terraform-aws-modules/terraform-aws-batch/commit/3e370d06bf4a7303a2bde56c0344b2e092fb6b0e))
+
+### [2.0.1](https://github.com/terraform-aws-modules/terraform-aws-batch/compare/v2.0.0...v2.0.1) (2023-05-03)
+
+
+### Bug Fixes
+
+* Change `instance_iam_role_use_name_prefix` to use correct data type ([#20](https://github.com/terraform-aws-modules/terraform-aws-batch/issues/20)) ([08a13f1](https://github.com/terraform-aws-modules/terraform-aws-batch/commit/08a13f1a2d7722fb89daf16f25398c4be205f3a9))
+
+## [2.0.0](https://github.com/terraform-aws-modules/terraform-aws-batch/compare/v1.2.3...v2.0.0) (2023-04-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* Bump Terraform version to 1.0, and allow specifying compute environments for queue (#19)
+
+### Features
+
+* Bump Terraform version to 1.0, and allow specifying compute environments for queue ([#19](https://github.com/terraform-aws-modules/terraform-aws-batch/issues/19)) ([8cec4e7](https://github.com/terraform-aws-modules/terraform-aws-batch/commit/8cec4e7ed047bc20e317b007abf67f4027532dc1))
+
+### [1.2.3](https://github.com/terraform-aws-modules/terraform-aws-batch/compare/v1.2.2...v1.2.3) (2023-04-27)
+
+
+### Bug Fixes
+
+* Add `create_before_destroy` lifecycle hook to `aws_batch_compute_environment` ([#18](https://github.com/terraform-aws-modules/terraform-aws-batch/issues/18)) ([614fc14](https://github.com/terraform-aws-modules/terraform-aws-batch/commit/614fc14f1be07a21a5de7a8dc0f477bf001a3519))
+
+### [1.2.2](https://github.com/terraform-aws-modules/terraform-aws-batch/compare/v1.2.1...v1.2.2) (2023-01-24)
+
+
+### Bug Fixes
+
+* Use a version for  to avoid GitHub API rate limiting on CI workflows ([#10](https://github.com/terraform-aws-modules/terraform-aws-batch/issues/10)) ([8205095](https://github.com/terraform-aws-modules/terraform-aws-batch/commit/8205095e4888aea3238d4f62c9a042839ccae39b))
+
 ### [1.2.1](https://github.com/terraform-aws-modules/terraform-aws-batch/compare/v1.2.0...v1.2.1) (2022-10-27)
 
 
